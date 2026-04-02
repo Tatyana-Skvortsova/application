@@ -1,0 +1,12 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.leftContainer {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap: 24;
+}

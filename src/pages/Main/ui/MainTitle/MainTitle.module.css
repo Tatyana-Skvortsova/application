@@ -1,0 +1,17 @@
+.mainTitle {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 32px;
+}
+
+.title {
+    display: flex;
+    flex: 1;
+    font-size: 48px;
+    font-family: var(--font-fixel-display);
+    font-weight: 600;
+    letter-spacing: -2%;
+    line-height: 60px;
+}
