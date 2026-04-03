@@ -12,10 +12,10 @@ const fixelDisplay = localFont({
       path: '../../public/fonts/FixelDisplay-SemiBold.woff2',
       weight: '600',
       style: 'normal',
-    }
+    },
   ],
-  display: 'swap', // стратегия отображения
-  variable: '--font-fixel-display', // опционально: CSS‑переменная
+  display: 'swap', 
+  variable: '--font-fixel-display', 
 });
 
 const fixelText = localFont({
@@ -29,10 +29,10 @@ const fixelText = localFont({
       path: '../../public/fonts/FixelText-SemiBold.woff2',
       weight: '600',
       style: 'normal',
-    }
+    },
   ],
-  display: 'swap', // стратегия отображения
-  variable: '--font-fixel-text', // опционально: CSS‑переменная
+  display: 'swap', 
+  variable: '--font-fixel-text',
 });
 
 export default function RootLayout({
@@ -41,7 +41,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${fixelDisplay.variable} ${fixelText.variable}`}>
+    <html
+      lang="en"
+      className={`${fixelDisplay.variable} ${fixelText.variable}`}
+    >
       <body>{children}</body>
     </html>
   );

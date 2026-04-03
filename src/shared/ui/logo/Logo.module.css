@@ -1,0 +1,14 @@
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  height: 48px;
+}
+
+.logomarc {
+  object-fit: contain;
+}
+
+.logotype {
+  object-fit: contain;
+}

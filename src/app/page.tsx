@@ -1,19 +1,27 @@
+'use client';
+
 import styles from './page.module.css';
-import Header from '../shared/ui/Header/Header';
-import MainTitle from '../pages/Main/ui/MainTitle/MainTitle';
-import MainCard from '../pages/Main/ui/MainCard/MainCard';
-import './reset.css'
+import Header from '../widgets/ui/header/Header';
+import MainTitle from '../widgets/ui/main-title/MainTitle';
+import MainCard from '../widgets/ui/main-card/MainCard';
+import './reset.css';
+import { pageContent, buttonsContent } from '@/shared/config/main-page-data';
 
 export default function Home() {
-  const number: number = 0;
-  const title: string = "Applications"
   return (
     <div className={styles.page}>
       <main className={styles.main}>
-        <Header applicationsGenerated={number} />
+        <Header />
         <div>
-          <MainTitle title={title} />
-          <MainCard/>
+          <MainTitle
+            title={pageContent.title}
+            button={buttonsContent.mainTitleCreate}
+          />
+          <MainCard
+            header={pageContent.mainCard.header}
+            description={pageContent.mainCard.description}
+            button={buttonsContent.mainCardCreate}
+          />
         </div>
       </main>
     </div>
