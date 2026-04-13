@@ -3,13 +3,24 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #e9f5ef;
+  background-color: var(--color-surface-card);
   border-radius: 8px;
   max-width: auto;
   height: 376px;
+  margin-top: 48px;
+  gap: 32px;
 }
 
 .container {
+  width: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+}
+
+.wrapper {
   width: 480px;
   display: flex;
   flex-direction: column;
@@ -23,6 +34,7 @@
   font-family: var(--font-fixel-display);
   font-weight: 600;
   font-size: 36px;
+  color: var(--color-text-heading);
   letter-spacing: -2%;
   line-height: 44px;
 }
@@ -32,6 +44,7 @@
   font-family: var(--font-fixel-text);
   font-weight: 400;
   font-size: 18px;
+  color: var(--color-text-muted);
   line-height: 28px;
   text-align: center;
 }
@@ -42,5 +55,9 @@
 }
 
 .secondaryButton {
+  display: flex;
+}
+
+.generated {
   display: flex;
 }

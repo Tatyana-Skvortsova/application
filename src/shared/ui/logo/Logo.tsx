@@ -1,32 +1,57 @@
 import styles from './Logo.module.css';
 import Image from 'next/image';
 
-type LogoProps = {
+export type LogoProps = {
   logomarc: string;
   logotype: string;
+  className?: string;
+  logomarcAlt: string;
+  logotypeAlt: string;
+  widthlogomarc?: number;
+  heightlogomarc?: number;
+  widthlogotype?: number;
+  heightlogotype?: number;
+  prioritylogomarc?: boolean;
+  prioritylogotype?: boolean;
+  filllogomarc?: boolean;
+  filllogotype?: boolean;
 };
 
-function Logo({ logomarc, logotype }: LogoProps) {
+export function Logo({
+  logomarc,
+  logotype,
+  className,
+  logomarcAlt,
+  logotypeAlt,
+  widthlogomarc,
+  heightlogomarc,
+  widthlogotype,
+  heightlogotype,
+  prioritylogomarc,
+  prioritylogotype,
+  filllogomarc,
+  filllogotype,
+}: LogoProps) {
   return (
-    <div className={styles.logo}>
+    <div className={[styles.logo, className].filter(Boolean).join(' ')}>
       <Image
         className={styles.logomarc}
         src={logomarc}
-        alt="logo Alt + Shift"
-        width={44}
-        height={44}
-        priority
+        alt={logomarcAlt}
+        width={widthlogomarc}
+        height={heightlogomarc}
+        priority={prioritylogomarc}
+        fill={filllogomarc}
       />
       <Image
         className={styles.logotype}
         src={logotype}
-        alt="logo Alt + Shift"
-        width={122}
-        height={22}
-        priority
+        alt={logotypeAlt}
+        width={widthlogotype}
+        height={heightlogotype}
+        priority={prioritylogotype}
+        fill={filllogotype}
       />
     </div>
   );
 }
-
-export default Logo;

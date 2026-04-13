@@ -1,0 +1,84 @@
+.generated {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.leftLabel {
+  display: block;
+  white-space: nowrap;
+  font-family: var(--font-fixel-text);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 28px;
+  color: var(--color-text-muted);
+}
+
+.rightBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.iconsRow {
+  display: flex;
+  align-items: center;
+}
+
+.circles {
+  gap: 4px;
+}
+
+.rectangles {
+  gap: 8px;
+}
+
+.single {
+  gap: 0;
+}
+
+.fullGenerateIcon {
+  display: block;
+  width: 28px;
+  height: 28px;
+}
+
+.icon {
+  display: block;
+  background-color: var(--color-icon-strong);
+}
+
+.circleIcon {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+}
+
+.rectangleIcon {
+  width: 32px;
+  height: 8px;
+  border-radius: 4px;
+}
+
+.singleIcon {
+  width: 28px;
+  height: 28px;
+}
+
+.active {
+  opacity: 1;
+}
+
+.inactive {
+  opacity: 0.24;
+}
+
+.bottomLabel {
+  font-family: var(--font-fixel-text);
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 400;
+  color: var(--color-text-muted);
+}

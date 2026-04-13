@@ -10,3 +10,9 @@
   align-items: center;
   gap: 24;
 }
+
+.rightContainer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}

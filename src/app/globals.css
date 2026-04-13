@@ -1,6 +1,27 @@
 :root {
   --font-fixel-display: 'FixelDisplay', sans-serif;
   --font-fixel-text: 'FixelText', sans-serif;
+
+  /* Кнопки */
+  --color-primary: #087443;
+  --color-primary-hover: #065d34;
+
+  /* Текст */
+  --color-text-white: #ffffff;
+  --color-text-grey: #344054;
+  --color-text-disabled: #98a2b3;
+  --color-text-heading: #101828;
+  --color-text-muted: #667085;
+
+  /* Границы */
+  --color-border-default: #d0d5dd;
+  --color-border-disabled: #d0d5dd;
+  --color-border-subtle: #e4e7ec;
+
+  /* Фоны и заливки */
+  --color-bg-disabled: #d0d5dd;
+  --color-surface-card: #e9f5ef;
+  --color-icon-strong: #101828;
 }
 
 html {

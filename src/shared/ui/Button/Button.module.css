@@ -9,6 +9,7 @@
   gap: 8px;
   cursor: pointer;
   border: 1px solid transparent;
+  text-decoration: none;
 }
 
 .button:disabled {
@@ -16,21 +17,21 @@
 }
 
 .filled {
-  background-color: #087443;
-  border-color: #087443;
-  color: #ffffff;
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-text-white);
 }
 
 .filled:disabled {
-  background-color: #d0d5dd;
-  border-color: #d0d5dd;
-  color: #98a2b3;
+  background-color: var(--color-bg-disabled);
+  border-color: var(--color-bg-disabled);
+  color: var(--color-text-disabled);
 }
 
 .outline {
   background-color: transparent;
-  border-color: #d0d5dd;
-  color: #344054;
+  border-color: var(--color-border-default);
+  color: var(--color-text-grey);
 }
 
 .small {
@@ -40,11 +41,23 @@
   line-height: 16px;
 }
 
+.small:hover {
+  background-color: var(--color-primary-hover);
+  border-color: var(--color-primary);
+  color: var(--color-text-white);
+}
+
 .middle {
   width: 190px;
   height: 60px;
   font-size: 18px;
   line-height: 24px;
+}
+
+.middle:hover {
+  background-color: var(--color-primary-hover);
+  border-color: var(--color-primary);
+  color: var(--color-text-white);
 }
 
 .large {
@@ -54,6 +67,18 @@
   height: 60px;
   font-size: 18px;
   line-height: 24px;
+}
+
+.smallHome {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  gap: 0;
+  border: 1.67px solid var(--color-border-default);
+  border-radius: 6px;
+  position: relative;
+  background-color: transparent;
+  border-color: var(--color-border-default);
 }
 
 .text {
@@ -85,3 +110,7 @@
   height: 24px;
 }
 
+.smallHomeIcon {
+  width: 20px;
+  height: 20px;
+}

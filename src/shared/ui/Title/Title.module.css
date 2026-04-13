@@ -1,0 +1,17 @@
+.title {
+  margin: 0;
+  font-family: var(--font-fixel-display);
+  font-weight: 600;
+}
+
+.h1 {
+  font-size: 48px;
+  line-height: 60px;
+  letter-spacing: -2%;
+}
+
+.h2 {
+  font-size: 36px;
+  line-height: 44px;
+  letter-spacing: -2%;
+}

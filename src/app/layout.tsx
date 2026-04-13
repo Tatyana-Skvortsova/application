@@ -1,4 +1,5 @@
 import './globals.css';
+import './reset.css';
 import localFont from 'next/font/local';
 
 const fixelDisplay = localFont({
@@ -14,8 +15,8 @@ const fixelDisplay = localFont({
       style: 'normal',
     },
   ],
-  display: 'swap', 
-  variable: '--font-fixel-display', 
+  display: 'swap',
+  variable: '--font-fixel-display',
 });
 
 const fixelText = localFont({
@@ -31,7 +32,7 @@ const fixelText = localFont({
       style: 'normal',
     },
   ],
-  display: 'swap', 
+  display: 'swap',
   variable: '--font-fixel-text',
 });
 

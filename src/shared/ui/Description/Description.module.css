@@ -1,0 +1,9 @@
+.description {
+  display: flex;
+  font-family: var(--font-fixel-text);
+  font-weight: 400;
+  font-size: 18px;
+  color: var(--color-text-muted);
+  line-height: 28px;
+  text-align: center;
+}
