@@ -62,7 +62,7 @@ export type logoContentType = {
 
 export const logoContent = {
   logomarc: '/logomarc.svg',
-  logotype: '/logotype.svg',
+  logotype: '/logo.svg',
   logomarcAlt: 'Logomarc',
   logotypeAlt: 'Logotype',
   widthlogomarc: 44,
