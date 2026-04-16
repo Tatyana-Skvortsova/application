@@ -1,4 +1,3 @@
-import type { ReactNode } from 'react';
 import Image from 'next/image';
 import styles from './Generated.module.css';
 
@@ -30,40 +29,36 @@ export function Generated({
   const bottomLabel = `${savedCount} out of ${MAX_COUNT}`;
 
   const shape = rowShape(variant);
+  const isCompleted = savedCount === MAX_COUNT;
+  const rowModifierClass = isCompleted
+    ? styles.single
+    : shape === 'rectangles'
+      ? styles.rectangles
+      : styles.circles;
+  const smallShapeClass =
+    shape === 'rectangles' ? styles.rectangleIcon : styles.circleIcon;
+  const progressCells = Array.from({ length: MAX_COUNT }, (_, index) => {
+    const isLit = index < savedCount;
+    const litClass = isLit ? styles.active : styles.inactive;
 
-  let progressRow: ReactNode = null;
-  let rowModifierClass = '';
-
-  if (savedCount === MAX_COUNT) {
-    rowModifierClass = styles.single;
-    progressRow = (
-      <Image
-        src="/checkIcon.svg"
-        alt=""
-        width={28}
-        height={28}
-        className={styles.fullGenerateIcon}
+    return (
+      <span
+        key={index}
+        className={[styles.icon, smallShapeClass, litClass].join(' ')}
       />
     );
-  } else {
-    rowModifierClass =
-      shape === 'rectangles' ? styles.rectangles : styles.circles;
-    const smallShapeClass =
-      shape === 'rectangles' ? styles.rectangleIcon : styles.circleIcon;
-
-    const cells = [];
-    for (let index = 0; index < MAX_COUNT; index++) {
-      const isLit = index < savedCount;
-      const litClass = isLit ? styles.active : styles.inactive;
-      cells.push(
-        <span
-          key={index}
-          className={[styles.icon, smallShapeClass, litClass].join(' ')}
-        />
-      );
-    }
-    progressRow = cells;
-  }
+  });
+  const progressRow = isCompleted ? (
+    <Image
+      src="/checkIcon.svg"
+      alt="check icon"
+      width={28}
+      height={28}
+      className={styles.fullGenerateIcon}
+    />
+  ) : (
+    progressCells
+  );
 
   return (
     <div className={styles.generated}>

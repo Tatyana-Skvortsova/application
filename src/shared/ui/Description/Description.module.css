@@ -1,9 +1,22 @@
 .description {
-  display: flex;
+  display: block;
   font-family: var(--font-fixel-text);
   font-weight: 400;
   font-size: 18px;
   color: var(--color-text-muted);
   line-height: 28px;
   text-align: center;
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 768px) {
+  .description {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 375px) {
+  .description {
+    font-size: 14px;
+  }
 }

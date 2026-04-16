@@ -18,7 +18,7 @@ function MainTitle({ title, button }: MainTitleProps) {
             {title}
           </Title>
         </div>
-        <div>
+        <div className={styles.buttonWrapper}>
           <Button
             size={button.size}
             variant={button.variant}

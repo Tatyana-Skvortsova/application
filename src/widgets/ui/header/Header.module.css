@@ -2,17 +2,66 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 16px;
 }
 
 .leftContainer {
   display: flex;
-  justify-content: left;
+  justify-content: flex-start;
   align-items: center;
-  gap: 24;
+  gap: 24px;
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.logoContainer {
+  min-width: 0;
+  max-width: 100%;
 }
 
 .rightContainer {
   display: flex;
   align-items: center;
   gap: 12px;
+  flex: 0 0 auto;
+}
+
+.generatedMobile {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .header {
+    gap: 20px;
+  }
+
+  .leftContainer {
+    gap: 12px;
+  }
+  .generatedWrap {
+    display: none;
+  }
+  .generatedMobile {
+    display: flex;
+    justify-content: flex-end;
+  }
+  .headerContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 375px) {
+  .header {
+    gap: 10px;
+  }
+
+  .leftContainer {
+    gap: 8px;
+  }
+
+  .rightContainer {
+    gap: 0;
+  }
 }

@@ -29,20 +29,30 @@ const HomeNavButton = ({
 
 function Header({ logo, homeButton, generated }: HeaderProps) {
   return (
-    <header className={styles.header}>
-      <div className={styles.leftContainer}>
-        <div className={styles.logoContainer}>
-          <Logo {...logo} />
+    <header className={styles.headerContainer}>
+      <div className={styles.header}>
+        <div className={styles.leftContainer}>
+          <div className={styles.logoContainer}>
+            <Logo {...logo} />
+          </div>
         </div>
-        <HomeNavButton {...homeButton} />
+        <div className={styles.rightContainer}>
+          <div className={styles.generatedWrap}>
+            <Generated
+              variant={generated.variant}
+              showLeftLabel={generated.showLeftLabel}
+              showBottomLabel={generated.showBottomLabel}
+            />
+          </div>
+          <HomeNavButton {...homeButton} />
+        </div>
       </div>
-      <div className={styles.rightContainer}>
+      <div className={styles.generatedMobile}>
         <Generated
           variant={generated.variant}
           showLeftLabel={generated.showLeftLabel}
           showBottomLabel={generated.showBottomLabel}
         />
-        <HomeNavButton {...homeButton} />
       </div>
     </header>
   );

@@ -12,3 +12,17 @@
 .logotype {
   object-fit: contain;
 }
+
+@media (max-width: 768px) {
+  .logo {
+    gap: 10px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 375px) {
+  .logo {
+    gap: 8px;
+    height: 36px;
+  }
+}

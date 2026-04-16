@@ -61,3 +61,15 @@
 .generated {
   display: flex;
 }
+
+@media (max-width: 768px) {
+  .container {
+    max-width: 480px;
+    width: 100%;
+  }
+
+  .wrapper {
+    max-width: 480px;
+    width: 100%;
+  }
+}
