@@ -67,6 +67,9 @@
     max-width: 480px;
     width: 100%;
   }
+  .card {
+    margin-top: 40px;
+  }
 
   .wrapper {
     max-width: 480px;

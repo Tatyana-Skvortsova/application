@@ -32,6 +32,7 @@ function MainCard({ title, description, button, generated }: MainCardProps) {
             <Button
               size={button.size}
               variant={button.variant}
+              href={button.href}
               leftIcon={
                 <Image
                   src={button.iconSrc}

@@ -1,0 +1,140 @@
+.page {
+  box-sizing: border-box;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 160px 80px;
+}
+
+.card {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 480px;
+  background-color: var(--color-surface-card);
+  border-radius: 8px;
+  padding: 40px 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 24px;
+}
+
+.authTitle {
+  text-align: center;
+  width: 100%;
+}
+
+.authLead {
+  margin: 0;
+}
+
+.modeRow {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.modeTab {
+  flex: 1 1 0;
+  width: auto !important;
+  max-width: 100%;
+}
+
+.modeTab.modeTabActive {
+  border-color: var(--color-primary) !important;
+  color: var(--color-primary);
+}
+
+.modeTab.modeTabActive:hover {
+  color: var(--color-text-white);
+}
+
+.modeTab.modeTabActive:hover span {
+  color: var(--color-text-white);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-family: var(--font-fixel-text);
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--color-text-heading);
+}
+
+.input {
+  box-sizing: border-box;
+  width: 100%;
+  font-family: var(--font-fixel-text);
+  font-size: 16px;
+  border: 1px solid var(--color-border-default);
+  border-radius: 6px;
+  height: 44px;
+  padding: 0 12px;
+  background: var(--color-text-white);
+  color: var(--color-text-heading);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.stretch {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.error {
+  margin: 0;
+  font-family: var(--font-fixel-text);
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  color: #b42318;
+}
+
+.success {
+  margin: 0;
+  font-family: var(--font-fixel-text);
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  color: var(--color-primary);
+}
+
+.backLink {
+  font-family: var(--font-fixel-text);
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--color-text-grey);
+  text-align: center;
+  text-decoration: none;
+  align-self: center;
+}
+
+.backLink:hover {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+@media (max-width: 1024px) {
+  .page {
+    padding: 24px 80px 80px;
+  }
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 20px 40px 60px;
+  }
+}

@@ -20,6 +20,7 @@ function MainTitle({ title, button }: MainTitleProps) {
         </div>
         <div className={styles.buttonWrapper}>
           <Button
+            href={button.href}
             size={button.size}
             variant={button.variant}
             leftIcon={

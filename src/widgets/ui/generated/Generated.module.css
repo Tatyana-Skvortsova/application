@@ -88,8 +88,11 @@
     gap: 8px;
   }
 
-  .leftLabel,
+  .leftLabel {
+    display: none;
+  }
   .bottomLabel {
+    
     font-size: 16px;
     line-height: 24px;
   }

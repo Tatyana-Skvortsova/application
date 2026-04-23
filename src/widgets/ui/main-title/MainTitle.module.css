@@ -24,7 +24,7 @@
 @media (max-width: 768px) {
   .mainTitle {
     border-bottom: 1px solid var(--color-border-subtle);
-    height: 120px;
+    height: 100px;
   }
   .wrapper {
     flex-direction: column;

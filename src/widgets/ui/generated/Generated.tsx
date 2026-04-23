@@ -30,35 +30,14 @@ export function Generated({
 
   const shape = rowShape(variant);
   const isCompleted = savedCount === MAX_COUNT;
-  const rowModifierClass = isCompleted
-    ? styles.single
-    : shape === 'rectangles'
-      ? styles.rectangles
-      : styles.circles;
+  let rowModifierClass = styles.circles;
+  if (isCompleted) {
+    rowModifierClass = styles.single;
+  } else if (shape === 'rectangles') {
+    rowModifierClass = styles.rectangles;
+  }
   const smallShapeClass =
     shape === 'rectangles' ? styles.rectangleIcon : styles.circleIcon;
-  const progressCells = Array.from({ length: MAX_COUNT }, (_, index) => {
-    const isLit = index < savedCount;
-    const litClass = isLit ? styles.active : styles.inactive;
-
-    return (
-      <span
-        key={index}
-        className={[styles.icon, smallShapeClass, litClass].join(' ')}
-      />
-    );
-  });
-  const progressRow = isCompleted ? (
-    <Image
-      src="/checkIcon.svg"
-      alt="check icon"
-      width={28}
-      height={28}
-      className={styles.fullGenerateIcon}
-    />
-  ) : (
-    progressCells
-  );
 
   return (
     <div className={styles.generated}>
@@ -68,7 +47,27 @@ export function Generated({
 
       <div className={styles.rightBlock}>
         <div className={[styles.iconsRow, rowModifierClass].join(' ')}>
-          {progressRow}
+          {isCompleted ? (
+            <Image
+              src="/checkIcon.svg"
+              alt="check icon"
+              width={28}
+              height={28}
+              className={styles.fullGenerateIcon}
+            />
+          ) : (
+            Array.from({ length: MAX_COUNT }, (_, index) => {
+              const isLit = index < savedCount;
+              const litClass = isLit ? styles.active : styles.inactive;
+
+              return (
+                <span
+                  key={index}
+                  className={[styles.icon, smallShapeClass, litClass].join(' ')}
+                />
+              );
+            })
+          )}
         </div>
 
         {showBottomLabel ? (
