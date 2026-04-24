@@ -53,7 +53,8 @@ export function AuthForm() {
       await signInWithPopup(auth, googleProvider);
       setSuccessMessage('Success! Google login completed.');
     } catch (error) {
-      const message = error instanceof Error ? error.message : 'Google login failed';
+      const message =
+        error instanceof Error ? error.message : 'Google login failed';
       setErrorMessage(message);
     } finally {
       setLoading(false);
@@ -75,7 +76,10 @@ export function AuthForm() {
             type="button"
             variant="outline"
             size="middle"
-            className={[styles.modeTab, mode === 'login' ? styles.modeTabActive : '']
+            className={[
+              styles.modeTab,
+              mode === 'login' ? styles.modeTabActive : '',
+            ]
               .filter(Boolean)
               .join(' ')}
             onClick={() => setMode('login')}
@@ -86,7 +90,10 @@ export function AuthForm() {
             type="button"
             variant="outline"
             size="middle"
-            className={[styles.modeTab, mode === 'signup' ? styles.modeTabActive : '']
+            className={[
+              styles.modeTab,
+              mode === 'signup' ? styles.modeTabActive : '',
+            ]
               .filter(Boolean)
               .join(' ')}
             onClick={() => setMode('signup')}
@@ -132,7 +139,11 @@ export function AuthForm() {
             className={styles.stretch}
             disabled={loading}
           >
-            {loading ? 'Please wait...' : mode === 'signup' ? 'Create account' : 'Login'}
+            {loading
+              ? 'Please wait...'
+              : mode === 'signup'
+                ? 'Create account'
+                : 'Login'}
           </Button>
         </form>
 
@@ -148,7 +159,9 @@ export function AuthForm() {
         </Button>
 
         {errorMessage ? <p className={styles.error}>{errorMessage}</p> : null}
-        {successMessage ? <p className={styles.success}>{successMessage}</p> : null}
+        {successMessage ? (
+          <p className={styles.success}>{successMessage}</p>
+        ) : null}
 
         <Link href="/" className={styles.backLink}>
           Back to landing
