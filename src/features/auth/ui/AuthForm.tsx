@@ -1,5 +1,9 @@
 'use client';
 
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { authSchema, type AuthFormValues } from '../model/schema';
+
 import { useState } from 'react';
 import Link from 'next/link';
 import {
@@ -15,23 +19,36 @@ import { Title } from '@/shared/ui/Title';
 import styles from './AuthForm.module.css';
 
 export function AuthForm() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+    clearErrors,
+  } = useForm<AuthFormValues>({
+    resolver: zodResolver(authSchema),
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+  });
   const [mode, setMode] = useState<AuthMode>('login');
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [isGoogleLoading, setIsGoogleLoading] = useState(false);
 
-  async function handleEmailAuth() {
+  async function handleEmailAuth(values: AuthFormValues) {
     setErrorMessage('');
     setSuccessMessage('');
-    setLoading(true);
 
     try {
       if (mode === 'signup') {
-        await createUserWithEmailAndPassword(auth, email, password);
+        await createUserWithEmailAndPassword(
+          auth,
+          values.email,
+          values.password
+        );
       } else {
-        await signInWithEmailAndPassword(auth, email, password);
+        await signInWithEmailAndPassword(auth, values.email, values.password);
       }
 
       setSuccessMessage('Success! You are logged in.');
@@ -39,15 +56,13 @@ export function AuthForm() {
       const message =
         error instanceof Error ? error.message : 'Authentication failed';
       setErrorMessage(message);
-    } finally {
-      setLoading(false);
     }
   }
 
   async function handleGoogleLogin() {
     setErrorMessage('');
     setSuccessMessage('');
-    setLoading(true);
+    setIsGoogleLoading(true);
 
     try {
       await signInWithPopup(auth, googleProvider);
@@ -57,7 +72,7 @@ export function AuthForm() {
         error instanceof Error ? error.message : 'Google login failed';
       setErrorMessage(message);
     } finally {
-      setLoading(false);
+      setIsGoogleLoading(false);
     }
   }
 
@@ -82,7 +97,12 @@ export function AuthForm() {
             ]
               .filter(Boolean)
               .join(' ')}
-            onClick={() => setMode('login')}
+            onClick={() => {
+              setMode('login');
+              setErrorMessage('');
+              setSuccessMessage('');
+              clearErrors();
+            }}
           >
             Login
           </Button>
@@ -96,28 +116,24 @@ export function AuthForm() {
             ]
               .filter(Boolean)
               .join(' ')}
-            onClick={() => setMode('signup')}
+            onClick={() => {
+              setMode('signup');
+              setErrorMessage('');
+              setSuccessMessage('');
+              clearErrors();
+            }}
           >
             Sign up
           </Button>
         </div>
 
-        <form
-          className={styles.form}
-          onSubmit={(event) => {
-            event.preventDefault();
-            void handleEmailAuth();
-          }}
-        >
+        <form className={styles.form} onSubmit={handleSubmit(handleEmailAuth)}>
           <label className={styles.label}>
             Email
-            <input
-              className={styles.input}
-              type="email"
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-              required
-            />
+            <input className={styles.input} {...register('email')} />
+            {errors.email ? (
+              <p className={styles.error}>{errors.email.message}</p>
+            ) : null}
           </label>
 
           <label className={styles.label}>
@@ -125,11 +141,11 @@ export function AuthForm() {
             <input
               className={styles.input}
               type="password"
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-              minLength={6}
-              required
+              {...register('password')}
             />
+            {errors.password ? (
+              <p className={styles.error}>{errors.password.message}</p>
+            ) : null}
           </label>
 
           <Button
@@ -137,9 +153,9 @@ export function AuthForm() {
             variant="filled"
             size="middle"
             className={styles.stretch}
-            disabled={loading}
+            disabled={isSubmitting}
           >
-            {loading
+            {isSubmitting
               ? 'Please wait...'
               : mode === 'signup'
                 ? 'Create account'
@@ -153,7 +169,7 @@ export function AuthForm() {
           size="middle"
           className={styles.stretch}
           onClick={handleGoogleLogin}
-          disabled={loading}
+          disabled={isGoogleLoading || isSubmitting}
         >
           Continue with Google
         </Button>
