@@ -14,7 +14,7 @@ export const buttonsContent = {
     variant: 'filled',
     iconSrc: '/plus.svg',
     iconAlt: 'plus',
-    href: '/auth/login',
+    href: '/app',
   },
   mainCardCreate: {
     label: 'Create New',
@@ -22,7 +22,7 @@ export const buttonsContent = {
     variant: 'filled',
     iconSrc: '/plus.svg',
     iconAlt: 'plus',
-    href: '/auth/login',
+    href: '/app',
   },
 } as const satisfies Record<string, ButtonType>;
 

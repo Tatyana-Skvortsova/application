@@ -3,13 +3,15 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { authSchema, type AuthFormValues } from '../model/schema';
+import { useRouter } from 'next/navigation';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signInWithPopup,
+  onAuthStateChanged,
 } from 'firebase/auth';
 import type { AuthMode } from '@/entities/user';
 import { auth, googleProvider } from '@/shared/lib/firebase/client';
@@ -19,10 +21,13 @@ import { Title } from '@/shared/ui/Title';
 import styles from './AuthForm.module.css';
 
 export function AuthForm() {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors, isSubmitting },
+    setError,
     clearErrors,
   } = useForm<AuthFormValues>({
     resolver: zodResolver(authSchema),
@@ -32,13 +37,19 @@ export function AuthForm() {
     },
   });
   const [mode, setMode] = useState<AuthMode>('login');
-  const [errorMessage, setErrorMessage] = useState('');
-  const [successMessage, setSuccessMessage] = useState('');
   const [isGoogleLoading, setIsGoogleLoading] = useState(false);
 
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        router.replace('/app');
+      }
+    });
+    return () => unsubscribe();
+  }, [router]);
+
   async function handleEmailAuth(values: AuthFormValues) {
-    setErrorMessage('');
-    setSuccessMessage('');
+    clearErrors('root');
 
     try {
       if (mode === 'signup') {
@@ -51,26 +62,27 @@ export function AuthForm() {
         await signInWithEmailAndPassword(auth, values.email, values.password);
       }
 
-      setSuccessMessage('Success! You are logged in.');
+      reset();
+      router.replace('/app');
     } catch (error) {
       const message =
         error instanceof Error ? error.message : 'Authentication failed';
-      setErrorMessage(message);
+      setError('root', { type: 'server', message });
     }
   }
 
   async function handleGoogleLogin() {
-    setErrorMessage('');
-    setSuccessMessage('');
+    clearErrors();
     setIsGoogleLoading(true);
 
     try {
       await signInWithPopup(auth, googleProvider);
-      setSuccessMessage('Success! Google login completed.');
+      reset();
+      router.replace('/app');
     } catch (error) {
       const message =
         error instanceof Error ? error.message : 'Google login failed';
-      setErrorMessage(message);
+      setError('root', { type: 'server', message });
     } finally {
       setIsGoogleLoading(false);
     }
@@ -99,8 +111,6 @@ export function AuthForm() {
               .join(' ')}
             onClick={() => {
               setMode('login');
-              setErrorMessage('');
-              setSuccessMessage('');
               clearErrors();
             }}
           >
@@ -118,9 +128,7 @@ export function AuthForm() {
               .join(' ')}
             onClick={() => {
               setMode('signup');
-              setErrorMessage('');
-              setSuccessMessage('');
-              clearErrors();
+              clearErrors('root');
             }}
           >
             Sign up
@@ -174,10 +182,9 @@ export function AuthForm() {
           Continue with Google
         </Button>
 
-        {errorMessage ? <p className={styles.error}>{errorMessage}</p> : null}
-        {successMessage ? (
-          <p className={styles.success}>{successMessage}</p>
-        ) : null}
+        {errors.root ? (
+  <p className={styles.error}>{errors.root.message}</p>
+) : null}
 
         <Link href="/" className={styles.backLink}>
           Back to landing
