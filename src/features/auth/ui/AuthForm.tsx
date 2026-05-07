@@ -183,8 +183,8 @@ export function AuthForm() {
         </Button>
 
         {errors.root ? (
-  <p className={styles.error}>{errors.root.message}</p>
-) : null}
+          <p className={styles.error}>{errors.root.message}</p>
+        ) : null}
 
         <Link href="/" className={styles.backLink}>
           Back to landing
