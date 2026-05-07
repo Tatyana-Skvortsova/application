@@ -24,7 +24,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   }, [router]);
 
   if (gate === 'checking') {
-    return <div>Checking</div>;
+    return null;
   }
 
   if (gate === 'no') {

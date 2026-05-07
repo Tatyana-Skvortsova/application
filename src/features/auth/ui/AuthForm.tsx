@@ -45,10 +45,10 @@ export function AuthForm() {
       if (user) {
         router.replace('/app');
       }
+      setCheckingAuth(false);
     });
     return () => unsubscribe();
   }, [router]);
-
 
   async function handleEmailAuth(values: AuthFormValues) {
     clearErrors('root');
