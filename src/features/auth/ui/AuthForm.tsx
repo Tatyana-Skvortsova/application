@@ -38,6 +38,7 @@ export function AuthForm() {
   });
   const [mode, setMode] = useState<AuthMode>('login');
   const [isGoogleLoading, setIsGoogleLoading] = useState(false);
+  const [checkingAuth, setCheckingAuth] = useState(true);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -47,6 +48,7 @@ export function AuthForm() {
     });
     return () => unsubscribe();
   }, [router]);
+
 
   async function handleEmailAuth(values: AuthFormValues) {
     clearErrors('root');
@@ -86,6 +88,10 @@ export function AuthForm() {
     } finally {
       setIsGoogleLoading(false);
     }
+  }
+
+  if (checkingAuth) {
+    return null;
   }
 
   return (
